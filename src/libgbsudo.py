@@ -33,4 +33,21 @@
 #####################################################################
 
 import pexpect
+import sys
 
+def passwordAutentification(arg, psswrd):
+    sudocomand = 'sudo ' + arg
+    sudochild = pexpect.spawn(sudocomand)
+    sudochild.expect('Password:')
+    sudochild.sendline(psswrd)
+    i = sudochild.expect(['is not in the sudoers file.', 'Password:', ])
+    if i == 0:
+        sudochild.kill(0)
+        return "sudo not setup"
+    if i == 1:
+        print("need password")
+        sudochild.kill(0)
+        return "fail password"
+    else:
+        sudochild.interact()
+        return "successful login"
