@@ -1,2 +1,2 @@
-# gbsudo
-Graphic BSD interface for Sudo.
+# gdoas
+Graphic interface for doas.
